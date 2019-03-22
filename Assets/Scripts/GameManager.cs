@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         spawners = FindObjectsOfType<CubeSpawner>();
+        Cursor.visible = false;
     }
     private void Update()
     {
