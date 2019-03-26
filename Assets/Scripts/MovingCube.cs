@@ -11,6 +11,8 @@ public class MovingCube : MonoBehaviour
 
     [SerializeField]
     private float moveSpeed = 1f;
+    private float newSpeed = 1f; 
+    private int score = 0;
 
     private void OnEnable()
     {
@@ -38,7 +40,7 @@ public class MovingCube : MonoBehaviour
         {
             LastCube = null;
             CurrentCube = null;
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
 
         float direction = hangover > 0 ? 1f : -1f;
@@ -49,6 +51,10 @@ public class MovingCube : MonoBehaviour
             SplitCubeOnX(hangover, direction);
 
         LastCube = this;
+         score++;
+        if (score % 1 == 0) {
+            newSpeed++;
+        }
     }
 
     private float GetHangover()
@@ -107,8 +113,6 @@ public class MovingCube : MonoBehaviour
 
         cube.AddComponent<Rigidbody>();
         cube.GetComponent<Renderer>().material.color = GetComponent<Renderer>().material.color;
-
-        // Destroy(cube, 1f);
     }
 
     private void Update()
